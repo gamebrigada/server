@@ -683,7 +683,8 @@ class ShareController extends AuthPublicShareController {
 			->setType('public_links')
 			->setSubject($subject, $parameters)
 			->setAffectedUser($affectedUser)
-			->setObject('files', $fileId, $filePath);
+			->setObject('files', $fileId, $filePath)
+			->setMessage($_SERVER['REMOTE_ADDR']);
 		$this->activityManager->publish($event);
 	}
 
