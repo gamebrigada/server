@@ -71,7 +71,7 @@ class Downloads extends Base {
 	 */
 	public function parseLongVersion(IEvent $event) {
 		$parsedParameters = $this->getParsedParameters($event);
-
+		$message = $event->getMessage();
 		if ($event->getSubject() === self::SUBJECT_PUBLIC_SHARED_FILE_DOWNLOADED ||
 			$event->getSubject() === self::SUBJECT_PUBLIC_SHARED_FOLDER_DOWNLOADED) {
 			$subject = $this->l->t('{file} downloaded via public link from ' . $message);
