@@ -42,10 +42,10 @@ class Downloads extends Base {
 	 */
 	public function parseShortVersion(IEvent $event) {
 		$parsedParameters = $this->getParsedParameters($event);
-
+		$message = $event->getMessage();
 		if ($event->getSubject() === self::SUBJECT_PUBLIC_SHARED_FILE_DOWNLOADED ||
 			$event->getSubject() === self::SUBJECT_PUBLIC_SHARED_FOLDER_DOWNLOADED) {
-			$subject = $this->l->t('Downloaded via public link');
+			$subject = $this->l->t('Downloaded via public link from ' . $message);
 		} else if ($event->getSubject() === self::SUBJECT_SHARED_FILE_BY_EMAIL_DOWNLOADED ||
 			$event->getSubject() === self::SUBJECT_SHARED_FOLDER_BY_EMAIL_DOWNLOADED) {
 			$subject = $this->l->t('Downloaded by {email}');
@@ -74,7 +74,7 @@ class Downloads extends Base {
 
 		if ($event->getSubject() === self::SUBJECT_PUBLIC_SHARED_FILE_DOWNLOADED ||
 			$event->getSubject() === self::SUBJECT_PUBLIC_SHARED_FOLDER_DOWNLOADED) {
-			$subject = $this->l->t('{file} downloaded via public link');
+			$subject = $this->l->t('{file} downloaded via public link from ' . $message);
 		} else if ($event->getSubject() === self::SUBJECT_SHARED_FILE_BY_EMAIL_DOWNLOADED ||
 			$event->getSubject() === self::SUBJECT_SHARED_FOLDER_BY_EMAIL_DOWNLOADED) {
 			$subject = $this->l->t('{email} downloaded {file}');
